@@ -1,0 +1,49 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+// 구조체 정의
+struct Student {
+    string id_name;   // 학번+이름 합쳐진 문자열
+    string gender;    // 성별
+    string city;      // 거주지
+};
+
+int main() {
+
+    // 학생 정보 (학번+이름이 하나로 묶인 상태)
+    Student st[11] = {
+        {"20251000이순신", "남", "경기"},
+        {"20251001강감찬", "남", "서울"},
+        {"20251002홍길동", "남", "경기"},
+        {"20251003임꺽정", "남", "서울"},
+        {"20251004원균",   "남", "경기"},
+        {"20251005장보고", "남", "서울"},
+        {"20251006장영실", "남", "경기"},
+        {"20251007세종",   "남", "서울"},
+        {"20251008유관순", "여", "경기"},
+        {"20251009선덕",   "여", "서울"},
+        {"20251010신사임당", "여", "경기"}
+    };
+
+    string inputCity, inputGender;
+
+    cout << "거주지와 성별을 입력하세요 (예: 경기 여): ";
+    cin >> inputCity >> inputGender;
+
+    cout << "\n=== 검색 결과 ===\n";
+
+    bool found = false;
+
+    for (int i = 0; i < 11; i++) {
+        if (st[i].city == inputCity && st[i].gender == inputGender) {
+            cout << st[i].id_name << "\n";   
+            found = true;
+        }
+    }
+
+    if (!found)
+        cout << "해당 조건에 맞는 학생이 없습니다.\n";
+
+    return 0;
+}
