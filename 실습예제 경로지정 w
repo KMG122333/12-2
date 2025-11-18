@@ -29,3 +29,53 @@ int main() {
 
     return 0;
 }
+
+
+
+
+
+#include <iostream>
+#include <string>
+#include <cstdio>   // fopen, fclose
+#include <cstdlib>  // system
+using namespace std;
+
+int main() {
+    int chapter;
+    string folder = "C:\Users\eheh0\Desktop\새 폴더";
+    string filename;
+
+    cout << "열고 싶은 챕터 숫자(1~18)를 입력하세요: ";
+    cin >> chapter;
+
+    if (chapter < 1 || chapter > 18) {
+        cout << "1~18 사이 숫자만 입력 가능합니다.\n";
+        return 1;
+    }
+
+    // 파일 경로 생성
+    filename = folder + to_string(chapter) + ".pptx";
+
+    // fopen으로 파일 존재 확인
+    FILE* file = fopen(filename.c_str(), "rb"); // 읽기 전용 바이너리 모드
+    if (file == nullptr) {
+        cout << "파일이 존재하지 않습니다. 경로를 확인하세요.\n";
+        return 1;
+    }
+
+    // 파일 존재 확인 완료
+    fclose(file);
+    cout << "파일 존재 확인: " << filename << endl;
+
+    // 파일 열기 (Windows PowerPoint 기본 프로그램)
+    string command = "start \"\" \"" + filename + "\"";
+    int result = system(command.c_str());
+
+    if (result != 0) {
+        cout << "파일을 열 수 없습니다. PowerPoint가 설치되어 있는지 확인하세요.\n";
+    } else {
+        cout << "PowerPoint에서 파일을 열었습니다.\n";
+    }
+
+    return 0;
+}
