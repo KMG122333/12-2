@@ -1,0 +1,31 @@
+#include <iostream>
+#include <string>
+#include <cstdlib> // system
+using namespace std;
+
+int main() {
+    int chapter;
+    string folder = "C:\Users\eheh0\Desktop\새 폴더"; 
+    string filename;
+
+    cout << "열고 싶은 챕터 숫자(1~18)를 입력하세요: ";
+    cin >> chapter;
+
+    if (chapter < 1 || chapter > 18) {
+        cout << "1부터 18 사이의 숫자만 입력 가능합니다.\n";
+        return 1;
+    }
+
+    
+    filename = folder + to_string(chapter) + ".pptx";
+
+    
+    string command = "start \"\" \"" + filename + "\"";
+    int result = system(command.c_str());
+
+    if (result != 0) {
+        cout << "파일을 열 수 없습니다. 경로를 확인하세요.\n";
+    }
+
+    return 0;
+}
